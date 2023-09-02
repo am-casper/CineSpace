@@ -16,6 +16,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [usernotfound, setUsernotfound] = useState(false);
+  const [errori, setErrori] = useState("");
 
   // method for signup
   const onLogin = async () => {
@@ -25,10 +26,21 @@ export default function LoginPage() {
       console.log(response);
       console.log(user);
       setUsernotfound((usernotfound) => false);
+      setErrori((errori) => response.data.message);
       router.push("/");
     } catch (error: any) {
       console.log("Kuch kadbadi ho gyi hai bro", error.message);
+      console.log(error);
+      let msg = "";
+      if (error.message.includes("401")) {
+        msg = "Invalid Password";
+      }
+      else if (error.message.includes("404")) {
+        msg = "User not found"
+      }
       setUsernotfound((usernotfound) => true);
+      setErrori((errori) => msg);
+
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -59,7 +71,7 @@ export default function LoginPage() {
         value={user.password}
         onChange={(e) => setUser({ ...user, password: e.target.value })}
       />
-      <p>{usernotfound ? "User not found" : ""}</p>
+      <p>{errori}</p>
       <button onClick={onLogin}>Login</button>
       <Link href="/signup">{"Don't have a account? Signup"}</Link>
     </div>
