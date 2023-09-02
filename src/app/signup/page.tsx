@@ -61,26 +61,31 @@ export default function SignupPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1>{loading ? "Processing" : "Sign Up"}</h1>
-      <label htmlFor="username">username</label>
-      <input
-        type="text"
-        value={user.username}
-        onChange={(e) => setUser({ ...user, username: e.target.value })}
-      />
-      <label htmlFor="email">email</label>
-      <input
-        type="email"
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-      />
-      <label htmlFor="password">password</label>
-      <input
-        type="password"
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-      />
-      <button onClick={onSignup}>
-        {buttonDisabled ? "Fill Details" : "Signup"}
+      <form action="" className="flex flex-col">
+        <label htmlFor="username">username</label>
+        <input
+          type="text"
+          value={user.username}
+          onChange={(e) => setUser({ ...user, username: e.target.value })}
+          required
+        />
+        <label htmlFor="email">email</label>
+        <input
+          type="email"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          required
+        />
+        <label htmlFor="password">password</label>
+        <input
+          type="password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          required
+        />
+      </form>
+      <button onClick={onSignup} disabled={buttonDisabled}>
+        {!buttonDisabled ? "Signup" : "Fill Details"}
       </button>
       <Link href="/login">Already have an accout? Login</Link>
     </div>
