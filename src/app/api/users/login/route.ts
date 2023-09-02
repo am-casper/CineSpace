@@ -32,6 +32,8 @@ export async function POST(request: NextRequest) {
       if (!passwordMatch) {
         return NextResponse.json({
           error: "Password is incorrect",
+        },{
+            status: 401
         });
       } else {
         // after login we need to send a token to the user which will be saved in the user cookies (not local storage)
