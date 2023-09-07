@@ -5,10 +5,10 @@ export async function connect() {
     mongoose.connect(process.env.MONGO_URL!);
     const connection = mongoose.connection;
     connection.on("connected", () => {
-      console.log("MongoDB Connect ho gaya bro");
+      console.log("MongoDB Connected");
     });
     connection.on("error", (error) => {
-      console.log("MongoDB Connect nahi ho paya bro");
+      console.log("MongoDB is not connecting");
       console.log(error);
       process.exit();
     });
