@@ -25,3 +25,9 @@ button {
   color: blanchedalmond;
   background-color: black;
 }
+
+.si{
+    margin-top: 1rem;
+    border-radius: 25px;
+    color: rgb(52, 35, 11);
+}

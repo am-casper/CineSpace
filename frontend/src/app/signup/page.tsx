@@ -87,7 +87,7 @@ export default function SignupPage() {
       <button onClick={onSignup} disabled={buttonDisabled}>
         {!buttonDisabled ? "Signup" : "Fill Details"}
       </button>
-      <Link href="/login">Already have an accout? Login</Link>
+      <Link href="/login" className="si">Already have an accout? Login</Link>
     </div>
   );
 }

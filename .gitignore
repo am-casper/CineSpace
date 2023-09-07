@@ -1,4 +1,6 @@
-node_modules
-/package-lock.json
+/frontend/node_modules
+/frontend/package-lock.json
+/frontend/.DS_Store
+/frontend/src/.DS_Store
 /.next
 /.env

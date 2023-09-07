@@ -73,7 +73,7 @@ export default function LoginPage() {
       />
       <p>{errori}</p>
       <button onClick={onLogin}>Login</button>
-      <Link href="/signup">{"Don't have a account? Signup"}</Link>
+      <Link href="/signup" className="si">{"Don't have a account? Signup"}</Link>
     </div>
   );
 }
