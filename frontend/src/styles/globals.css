@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: blanchedalmond;
+}
+
+input {
+  margin-bottom: 1rem;
+  margin-top: 0.2rem;
+  border: 1px solid azure;
+  border-radius: 25px;
+  padding: 0.5rem;
+  color: black;
+  width: 20rem;
+}
+
+button ,.btn{
+  height: min-content;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 0.5rem 5rem;
+  color: blanchedalmond;
+  background-color: black;
+}
+
+.upload-btn {
+  height: min-content;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 0.5rem;
+  color: black;
+  background-color: blanchedalmond;
+}
+
+.upload-input {
+  margin-top: 1rem;
+  height: min-content;
+  background-color: blanchedalmond;
+  margin-right: 2rem;
+}
+textarea {
+  border-radius: 25px 25px 0px 25px;
+  margin-bottom: 2rem;
+  border: 1px solid azure;
+  color: black;
+  padding: 0.5rem;
+}
+
