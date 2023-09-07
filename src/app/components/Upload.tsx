@@ -51,9 +51,10 @@ const ImageUpload = () => {
   };
 
   return (
-    <button className="" onClick={uploadImageWidget}>
-      Upload your Video
-    </button>
+    <div className=" flex justify-center items-center">
+    <button className="upload-btn mr-4" onClick={uploadImageWidget}>
+      Add your Video
+    </button></div>
   );
 };
 

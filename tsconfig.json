@@ -23,6 +23,7 @@
       "@/contexts/*": ["./src/contexts/*"],
       "@/utils/*": ["./src/app/utils/*"],
       "@/components/*": ["./src/app/components/*"],
+      "@/public/*": ["./public/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/utils/CloudinaryService.js", "src/app/components/Upload.tsx", "src/app/page.tsx"],
