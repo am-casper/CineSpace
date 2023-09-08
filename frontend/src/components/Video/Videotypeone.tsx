@@ -32,7 +32,7 @@ function Videotypeone({
         height={200}
         width={400}
       />
-      <div className="info">
+      <div className="infox">
         <Avatar className="-z-5" src={channelImg} />
         <div className="text">
           <h1 className="title">{videoTitle}</h1>
