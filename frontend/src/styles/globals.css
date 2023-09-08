@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 body {
-    background-color: blanchedalmond;
-}
+  height: max-content;
+  background-color: aliceblue;
+} 
 
 input {
   margin-bottom: 1rem;
@@ -32,8 +33,8 @@ button {
   background-color: black;
 }
 
-.si{
-    margin-top: 1rem;
-    border-radius: 25px;
-    color: rgb(52, 35, 11);
+.si {
+  margin-top: 1rem;
+  border-radius: 25px;
+  color: rgb(52, 35, 11);
 }

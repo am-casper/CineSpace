@@ -1,14 +1,13 @@
 .master {
   padding-top: 80px;
   padding-left: 90px;
-  z-index: 1;
+  z-index: -11;
   background-color: aliceblue;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
-  height: 100vh;
-  width: 100vw;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .master h1 {
