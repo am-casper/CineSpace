@@ -1,8 +1,8 @@
-h1 {
+.logo {
   font-weight: 700;
   font-family: "Courier New", Courier, monospace;
   font-size: 2rem;
-  padding-left: 70px;
+  padding-left: 5%;
 }
 
 input {
@@ -13,7 +13,6 @@ input {
 }
 
 .search {
-  
   display: flex;
   border: 1px solid #d5d5d5;
   background-color: #f8f8f8;
@@ -37,4 +36,9 @@ input {
 
 .searchicon:hover {
   color: white;
+}
+
+.sidebaractiv {
+
+  padding-left: 20%;
 }
