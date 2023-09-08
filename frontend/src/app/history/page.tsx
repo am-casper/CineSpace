@@ -1,7 +1,18 @@
-import React from "react";
+"use client";
+import Navbar from "@/components/Navbar/Navbar";
+import useSidebarStore from "@/global/sideBarStore";
 
-function History() {
-  return <div>History</div>;
+import "@/styles/main.css";
+export default function History() {
+  const sbactive = useSidebarStore((state) => state.sidebarActive);
+  return (
+    <>
+      <Navbar />
+      <main className={`master ${sbactive ? "master-active" : ""}`}>
+        <h1>History</h1>
+        <h1>History</h1>
+        <h1>History</h1>
+      </main>
+    </>
+  );
 }
-
-export default History;

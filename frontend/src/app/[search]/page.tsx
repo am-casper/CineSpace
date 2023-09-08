@@ -1,10 +1,10 @@
 "use client";
 import Navbar from "@/components/Navbar/Navbar";
-import Videotypeone from "@/components/Video/Videotypeone";
+import Videotypetwo from "@/components/Video/Videotypetwo";
 import useSidebarStore from "@/global/sideBarStore";
 
-import "@/styles/main.css";
-export default function Home() {
+import "@/styles/search.css";
+export default function Search({}) {
   const sbactive = useSidebarStore((state) => state.sidebarActive);
   return (
     <>

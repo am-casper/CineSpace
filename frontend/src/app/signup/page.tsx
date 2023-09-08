@@ -32,11 +32,11 @@ export default function SignupPage() {
       // making a request to the backend
       // posting user(data) to the end point /api/users/signup
       const apiResponse = await axios.post("/api/users/signup", user);
-      console.log("Signup ho gaya bro", apiResponse.data);
+      // console.log("Signup ho gaya bro", apiResponse.data);
       router.push("/login");
     } catch (e: any) {
       // as this is a client component this console log will be visible on browser
-      console.log("Ooopsie woopsie", e.message);
+      // console.log("Ooopsie woopsie", e.messnpmage);
       // on the other hand all the console.log on the api section will be visible in the terminal
       toast.error(e.message);
     } finally {
