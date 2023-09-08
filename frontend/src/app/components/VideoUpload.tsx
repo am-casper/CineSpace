@@ -3,7 +3,7 @@ import { useUploadContext } from "@/contexts/UploadContext";
 import { openUploadWidget } from "@/utils/CloudinaryService";
 
 const VideoUpload = () => {
-  const { setPublicId: setPublicId } = useUploadContext();
+  const { setVidPublicId: setVidPublicId } = useUploadContext();
   const cloudName = "cinespace";
   const uploadPreset = "cs_upload";
   const uploadImageWidget = () => {
@@ -44,7 +44,7 @@ const VideoUpload = () => {
       function (error: any, result: any) {
         if (!error && result.event === "success") {
           console.log(result);
-          setPublicId(result.info.public_id);
+          setVidPublicId(result.info.public_id);
         }
       }
     );

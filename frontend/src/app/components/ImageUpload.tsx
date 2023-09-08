@@ -1,15 +1,17 @@
+import { useUploadContext } from "@/contexts/UploadContext";
 import { openUploadWidget } from "@/utils/CloudinaryService";
 
 const ThumbnailUpload=()=>{
-    
+  const { setImgPublicId: setImgPublicId } = useUploadContext();
+
 
     function uploadImageWidget(event: any): void {
         let myWidget = openUploadWidget(
         {
           cloudName: 'cinespace',
           uploadPreset: "cs_upload",
-          esourceType: "image",
-          sources: [ "local", "url"], 
+          // resourceType: "image",
+          sources: [ "local"], 
           multiple: false, 
           clientAllowedFormats: ["jpg","jpeg","png","svg"],
           styles: {
@@ -33,6 +35,7 @@ const ThumbnailUpload=()=>{
         (error:any, result:any) => {
           if (!error && result && result.event === "success") {
             console.log("Done! Here is the image info: ", result.info);
+            setImgPublicId(result.info.public_id)
            
           }
         }
@@ -42,8 +45,8 @@ const ThumbnailUpload=()=>{
 
       return (
         <div className=" flex justify-center items-center">
-        <button className="upload-btn mr-4" onClick={uploadImageWidget}>
-          Add your Thumbnail
+        <button className="upload-btn" onClick={uploadImageWidget}>
+          <div className="px-4">Add your Thumbnail</div>
         </button></div>
       );
 }

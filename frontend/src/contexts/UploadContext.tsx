@@ -7,17 +7,24 @@ import {
   useState,
 } from "react";
 interface ContextProps {
-    publicId: string,
-    setPublicId: Dispatch<SetStateAction<string>>,
+    VidpublicId: string,
+    setVidPublicId: Dispatch<SetStateAction<string>>,
+    ImgpublicId: string,
+    setImgPublicId: Dispatch<SetStateAction<string>>,
     
 }
-const UploadContext = createContext<ContextProps>({ publicId: "", setPublicId: (): string => "" });
+const UploadContext = createContext<ContextProps>({
+  VidpublicId: "", setVidPublicId: (): string => "",
+  ImgpublicId: "",
+  setImgPublicId: ():string=>""
+});
 export const useUploadContext = () => useContext(UploadContext);
 
 export const UploadContextProvider = ({ children }: { children: any }) => {
-  const [publicId, setPublicId] = useState("");
+  const [VidpublicId, setVidPublicId] = useState("");
+  const [ImgPublicId, setImgPublicId] = useState("");
   return (
-    <UploadContext.Provider value={{ publicId: publicId, setPublicId: setPublicId }}>
+    <UploadContext.Provider value={{ VidpublicId: VidpublicId, setVidPublicId: setVidPublicId,  ImgpublicId:ImgPublicId, setImgPublicId:setImgPublicId}}>
       {children}
     </UploadContext.Provider>
   );

@@ -4,8 +4,13 @@ import VideoUpload from "@/app/components/VideoUpload";
 import ThumbnailUpload from "../components/ImageUpload";
 
 export default function UploadPage() {
-  const { publicId } = useUploadContext();
-  const link = `https://res.cloudinary.com/cinespace/video/upload/v1693681213/${publicId}.jpg`
+  const { VidpublicId: VidpublicId, ImgpublicId: ImgpublicId } = useUploadContext();
+  const defaultLink = `https://res.cloudinary.com/cinespace/video/upload/v1693681213/${VidpublicId}.jpg`
+  const customLink = `https://res.cloudinary.com/cinespace/image/upload/v1693681213/${ImgpublicId}`
+  function handleSubmit(event: any): void {
+    //code for uploading to db
+  }
+
   return (
     <main className="flex min-h-screen flex-col p-5">
       <h1 className="text-4xl font-bold text-center">CineSpace</h1>
@@ -32,10 +37,11 @@ export default function UploadPage() {
           </div>
           <VideoUpload />
         </div>
-        {publicId&&<img src={link}></img>}
+        {VidpublicId&&!ImgpublicId&&<img src={defaultLink}></img>}
+        {ImgpublicId&&<img src={customLink}></img>}
         <ThumbnailUpload />
         <div className="flex justify-center items-center">
-          <button type="submit" className=" upload-btn ">
+          <button type="submit" className=" upload-btn " onClick={handleSubmit}>
             <div className="px-5">Upload Video</div>
           </button>
         </div>
