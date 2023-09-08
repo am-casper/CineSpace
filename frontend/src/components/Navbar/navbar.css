@@ -2,7 +2,7 @@
   font-weight: 700;
   font-family: "Courier New", Courier, monospace;
   font-size: 2rem;
-  padding-left: 5%;
+  padding-left: 80px;
 }
 
 input {
@@ -40,5 +40,5 @@ input {
 
 .sidebaractiv {
 
-  padding-left: 20%;
+  padding-left: 200px;
 }
