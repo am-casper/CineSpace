@@ -11,6 +11,7 @@ interface Props {
   videoViews: string;
   videoTitle: string;
   videoTime: string;
+  videoLink: string;
 }
 
 function Videotypeone({
@@ -21,6 +22,7 @@ function Videotypeone({
   videoViews,
   videoTitle,
   videoTime,
+  videoLink,
 }: Props) {
   return (
     <div className="main">
@@ -29,13 +31,15 @@ function Videotypeone({
         src={thumbnailUrl}
         alt=""
         objectFit="contain"
-        height={200}
+        height={225}
         width={400}
       />
-      <div className="infox">
+      <div className="info">
         <Avatar className="-z-5" src={channelImg} />
         <div className="text">
-          <h1 className="title">{videoTitle}</h1>
+          <Link href={videoLink}>
+            <h1 className="title">{videoTitle}</h1>
+          </Link>
           <p className="channel">
             <Link href={channelLink}>{channelName}</Link>
           </p>
