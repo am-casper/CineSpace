@@ -71,3 +71,17 @@ Run the deno server
   deno run  -A server.ts
 ```
 
+
+## Features
+
+- Next Auth for authentication
+- Upload your favorite videos
+- Custom Media Player
+- Automatic Thumbnail Generation Feature
+- Watch in two different qualities
+- Dislike the content you hate
+- Comment on you favorite videos
+- Dislike your favourite comments
+- Subscribe your favorite creators
+- Search content in cinespace
+
