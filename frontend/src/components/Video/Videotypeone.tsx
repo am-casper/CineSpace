@@ -31,23 +31,29 @@ function Videotypeone({
 
   return (
     <div className="main">
-      <Link href={`/video?id=${id}`}>
-        <Image
-          className="thumbnail"
-          src={thumbnailUrl}
-          alt=""
-          objectFit="contain"
-          height={225}
-          width={400}
-        />
-      </Link>
+      <Image
+        className="thumbnail"
+        src={thumbnailUrl}
+        alt=""
+        objectFit="contain"
+        height={225}
+        width={400}
+        onClick={() => {
+          router.push(`/video?id=${id}`);
+        }}
+      />
 
       <div className="info">
         <Avatar className="-z-5" src={channelImg} />
         <div className="text">
-          <Link href={videoLink}>
-            <h1 className="title">{videoTitle}</h1>
-          </Link>
+          <h1
+            onClick={() => {
+              router.push(`/video?id=${id}`);
+            }}
+            className="title"
+          >
+            {videoTitle}
+          </h1>
           <p className="channel">
             <Link href={channelLink}>{channelName}</Link>
           </p>
