@@ -1,4 +1,5 @@
 "use client";
+import { Video } from "@/utils/types";
 import {
   Dropdown,
   DropdownTrigger,
@@ -6,16 +7,30 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import { SeekForwardIcon, SeekBackwardIcon } from "@vidstack/react/icons";
-import { useRef, useState } from "react";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 
 export default function VideoScreen({ searchParams }: { searchParams: any }) {
+
   const id = searchParams.id;
+  console.log(id);
   const playerRef = useRef<ReactPlayer | null>(null);
   const [bitRate, setBitRate] = useState("400k");
   const link = `https://res.cloudinary.com/cinespace/video/upload/br_${bitRate}/v1693681213/${id}.mp4`;
   const [showVid, setShowVid] = useState(false);
   const [seekTo, setSeekTo] = useState<number>(0);
+
+  // Added by me
+  const [video, setVideo] = useState<Video>();
+  useEffect(() => {
+    axios.get(`http://localhost:8000/video/${id}`).then((res) => {
+      setVideo(res.data.data.document);
+    });
+  }, []);
+
+  // end 
+  console.log(video);
   function seekforward(event: any): void {
     playerRef.current?.seekTo(playerRef.current?.getCurrentTime()! + 5);
   }

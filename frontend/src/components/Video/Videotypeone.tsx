@@ -31,7 +31,7 @@ function Videotypeone({
 
   return (
     <div className="main">
-      <Link href={`/video/${id}`}>
+      <Link href={`/video?id=${id}`}>
         <Image
           className="thumbnail"
           src={thumbnailUrl}
