@@ -15,8 +15,10 @@ import { Avatar } from "@mui/material";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import ReplyIcon from "@mui/icons-material/Reply";
+import useSidebarStore from "@/global/sideBarStore";
 
 export default function VideoScreen({ searchParams }: { searchParams: any }) {
+  const sbactive = useSidebarStore((state) => state.sidebarActive);
   const [subscribed, setSubscribed] = useState(false);
   const [liked, setLiked] = useState(false);
   const [desc, setdesc] = useState(false);
@@ -127,8 +129,8 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
           </Dropdown>
         </div>
       </div>
-      //TODO: added by kitu
-      <div className="info">
+
+      <div className={`infoo ${sbactive ? "activeinfo" : ""}`}>
         <div className="channel">
           <Avatar sx={{ height: 50, width: 50 }} />
           <div className="channelinfo">
@@ -163,7 +165,7 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
         </div>
       </div>
       <div
-        className="description"
+        className={`description ${sbactive ? "descactive" : ""}`}
         onClick={() => {
           setdesc(!desc);
         }}
