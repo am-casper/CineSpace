@@ -1,0 +1,19 @@
+.master {
+  padding-top: 80px;
+  padding-left: 90px;
+  z-index: -11;
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.master h1 {
+  padding: 0;
+}
+
+.master-active {
+  padding-left: 20%;
+}
