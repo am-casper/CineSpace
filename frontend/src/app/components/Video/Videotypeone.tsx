@@ -2,8 +2,10 @@ import Image from "next/image";
 import "@/components/Video/videotypeone.css";
 import { Avatar } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Props {
+  id: string;
   thumbnailUrl: string;
   channelName: string;
   channelLink: string;
@@ -11,9 +13,11 @@ interface Props {
   videoViews: string;
   videoTitle: string;
   videoTime: string;
+  videoLink: string;
 }
 
 function Videotypeone({
+  id,
   thumbnailUrl,
   channelName,
   channelLink,
@@ -21,7 +25,10 @@ function Videotypeone({
   videoViews,
   videoTitle,
   videoTime,
+  videoLink,
 }: Props) {
+  const router = useRouter();
+
   return (
     <div className="main">
       <Image
@@ -29,13 +36,24 @@ function Videotypeone({
         src={thumbnailUrl}
         alt=""
         objectFit="contain"
-        height={200}
+        height={225}
         width={400}
+        onClick={() => {
+          router.push(`/video?id=${id}`);
+        }}
       />
-      <div className="infox">
+
+      <div className="info">
         <Avatar className="-z-5" src={channelImg} />
         <div className="text">
-          <h1 className="title">{videoTitle}</h1>
+          <h1
+            onClick={() => {
+              router.push(`/video?id=${id}`);
+            }}
+            className="title"
+          >
+            {videoTitle}
+          </h1>
           <p className="channel">
             <Link href={channelLink}>{channelName}</Link>
           </p>
