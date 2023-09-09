@@ -11,10 +11,10 @@ export async function POST(request: NextRequest) {
     const reqDataBody = await request.json();
     // destructuring
     const { email, password } = reqDataBody;
-    // console.log(reqDataBody);
+    console.log(reqDataBody);
     // checking if user already exists
     const findResult = await User.findOne({ email });
-    // console.log(!findResult);
+    console.log(!findResult);
     if (!findResult) {
       return NextResponse.json(
         {
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
         password,
         findResult.password
       );
-      // console.log(passwordMatch);
+      console.log(passwordMatch);
       if (!passwordMatch) {
         return NextResponse.json({
           error: "Password is incorrect",

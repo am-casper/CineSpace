@@ -19,9 +19,13 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*":["./src/*"],
+      "@/contexts/*": ["./src/contexts/*"],
+      "@/utils/*": ["./src/app/utils/*"],
+      "@/components/*": ["./src/app/components/*"],
+      "@/public/*": ["./public/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/utils/CloudinaryService.js", "src/app/components/VideoUpload.tsx", "src/app/page.tsx"],
   "exclude": ["node_modules"]
 }
