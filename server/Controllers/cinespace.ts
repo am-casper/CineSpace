@@ -55,6 +55,8 @@ const addVideo = async ({
       options.body = JSON.stringify(query);
       const dataResponse = await fetch(URI, options);
       const { insertedId } = await dataResponse.json();
+      response.headers.set("Access-Control-Allow-Origin", "*");
+
       if (dataResponse.ok) {
         response.status = 201;
         response.body = {
@@ -91,6 +93,8 @@ const getVideos = async ({ response }: { response: any }) => {
     options.body = JSON.stringify(query);
     const dataResponse = await fetch(URI, options);
     const allVideos = await dataResponse.json();
+    response.headers.set("Access-Control-Allow-Origin", "*");
+
     if (dataResponse.ok) {
       response.status = 200;
       response.body = {
@@ -134,6 +138,7 @@ const getVideo = async ({
   options.body = JSON.stringify(query);
   const dataResponse = await fetch(URI, options);
   const video = await dataResponse.json();
+  response.headers.set("Access-Control-Allow-Origin", "*");
 
   if (dataResponse.ok) {
     response.status = 200;
