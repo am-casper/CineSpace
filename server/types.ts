@@ -18,14 +18,15 @@ interface Request {
   body: Function;
 }
 interface Video {
-  thumbnail: string;
-  dislikeCount: number;
-  viewsCount: number;
-  isKids: boolean;
-  uploadedBy: string;
-  title: string;
-  desc: string;
-  comments: Comment[];
+  thumbnailPublic?: string;
+  dislikeCount?: number;
+  viewsCount?: number;
+  isKids?: boolean;
+  uploadedBy?: string;
+  title?: string;
+  desc?: string;
+  videoPublic?: string;
+  comments?: Comment[];
 }
 
 interface Comment {

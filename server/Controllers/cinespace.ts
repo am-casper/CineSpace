@@ -16,6 +16,67 @@ const options = {
   body: "",
 };
 
+// !updateVideo
+
+const updateVideo = async ({
+  params,
+  request,
+  response,
+}: {
+  params: { id: string };
+  request: any;
+  response: any;
+}) => {
+  try {
+    const body = await request.body();
+    const {
+      thumbnailPublic,
+      dislikeCount,
+      viewsCount,
+      isKids,
+      desc,
+      videoPublic,
+      comments,
+    }: Video = await body.value;
+    const URI = `${BASE_URI}/updateOne`;
+
+    const set: Video = {};
+    if (thumbnailPublic) set.thumbnailPublic = thumbnailPublic;
+    else if (videoPublic) set.videoPublic = videoPublic;
+    else if (dislikeCount) set.dislikeCount = dislikeCount;
+    else if (viewsCount) set.viewsCount = viewsCount;
+    else if (isKids) set.isKids = isKids;
+    else if (desc) set.desc = desc;
+    else if (comments) set.comments = comments;
+
+    const query = {
+      collection: COLLECTION,
+      database: DATABASE,
+      dataSource: DATA_SOURCE,
+      filter: {
+        _id: {
+          $oid: params.id,
+        },
+      },
+      update: { $set: set },
+    };
+    options.body = JSON.stringify(query);
+    const dataResponse = await fetch(URI, options);
+    const videoUpdated = await dataResponse.json();
+
+    response.status = 200;
+    response.body = {
+      success: true,
+      videoUpdated,
+    };
+  } catch (err) {
+    response.body = {
+      success: false,
+      msg: err.toString(),
+    };
+  }
+};
+
 // !addVideo
 const addVideo = async ({
   request,
@@ -32,16 +93,17 @@ const addVideo = async ({
         msg: "No Data",
       };
     } else {
-      const { thumbnail, isKids, uploadedBy, title, desc } =
+      const { thumbnailPublic, isKids, uploadedBy, title, desc, videoPublic } =
         await request.body().value;
       const video: Video = {
-        thumbnail,
+        thumbnailPublic,
         dislikeCount: 0,
         viewsCount: 0,
         isKids,
         uploadedBy,
         title,
         desc,
+        videoPublic,
         comments: [],
       };
 
@@ -155,4 +217,4 @@ const getVideo = async ({
   }
 };
 
-export { addVideo, getVideos, getVideo };
+export { addVideo, getVideos, getVideo, updateVideo };
