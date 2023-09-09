@@ -63,6 +63,7 @@ const updateVideo = async ({
     options.body = JSON.stringify(query);
     const dataResponse = await fetch(URI, options);
     const videoUpdated = await dataResponse.json();
+    response.headers.set("Access-Control-Allow-Origin", "*");
 
     response.status = 200;
     response.body = {
