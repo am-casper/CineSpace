@@ -48,7 +48,7 @@ function Videotypeone({
         <div className="text">
           <h1
             onClick={() => {
-              router.push(`/video?id=${id}`);
+              router.push(`/video?id=${videoPublic}`);
             }}
             className="title"
           >

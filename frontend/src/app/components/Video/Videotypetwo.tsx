@@ -4,34 +4,35 @@ import { Avatar } from "@mui/material";
 import Link from "next/link";
 
 interface Props {
-  thumbnailUrl: string;
+  id: string;
+  thumbnailPublic: string;
+  videoPublic:string;
   channelName: string;
   channelLink: string;
   channelImg: string;
   videoViews: string;
   videoTitle: string;
   videoTime: string;
-  videoDesc: string;
-  videoLink: string;
+  videoDesc:string;
 }
-
 function Videotypetwo({
-  thumbnailUrl,
+  id,
+  thumbnailPublic,
+  videoPublic,
   channelName,
   channelLink,
   channelImg,
   videoViews,
   videoTitle,
   videoTime,
-  videoDesc,
-  videoLink,
+  videoDesc
 }: Props) {
   return (
     <div className="main">
-      <Link href={videoLink}>
+      <Link href={`/video?id=${videoPublic}`}>
         <Image
           className="thumbnail"
-          src={thumbnailUrl}
+          src={thumbnailPublic}
           alt=""
           objectFit="contain"
           height={200}
@@ -40,7 +41,7 @@ function Videotypetwo({
       </Link>
 
       <div className="info">
-        <Link href={videoLink}>
+        <Link href={`/video?id=${videoPublic}`}>
           <h1 className="title">{videoTitle}</h1>
           <p className="viewdate">
             {videoViews} views - {videoTime} ago
@@ -58,7 +59,7 @@ function Videotypetwo({
           </div>
         </Link>
 
-        <Link href={videoLink}>
+        <Link href={`/video?id=${videoPublic}`}>
           <p className="desc">{videoDesc}</p>
         </Link>
       </div>
