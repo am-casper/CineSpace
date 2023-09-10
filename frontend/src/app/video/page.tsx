@@ -5,6 +5,7 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Navbar,
 } from "@nextui-org/react";
 import { SeekForwardIcon, SeekBackwardIcon } from "@vidstack/react/icons";
 import axios from "axios";
@@ -96,7 +97,9 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             style={{
               width: "100%",
             }}
-            src={`https://res.cloudinary.com/cinespace/image/upload/v1693728639/${video?.thumbnailPublic}.png`}
+            src={`https://res.cloudinary.com/cinespace/${
+              video?.thumbnailPublic === video?.videoPublic ? "video" : "image"
+            }/upload/v1693681213/${video?.thumbnailPublic}.jpg`}
             onClick={() => {
               setShowVid(true);
             }}
@@ -246,9 +249,9 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             </div>
           </div>
         )}
-        {video?.comments.map((comment) => {
+        {video?.comments.map((comment,i) => {
           return (
-            <div className="comment">
+            <div className="comment" key={i}>
               <h1>{comment.comment}</h1>
               <div
                 className="dislike"

@@ -34,22 +34,28 @@ export default function Search({ params }: Props) {
   return (
     <>
       <Navbar />
-      <main className={`master ${sbactive ? "master-active" : ""}`}>
+      <main className={`master1 ${sbactive ? "master1-active" : ""}`}>
         {movies.map((video) => {
           return (
             <Videotypetwo
-              thumbnailPublic={`https://res.cloudinary.com/cinespace/image/upload/v1693681213/${video.thumbnailPublic}.jpg`}
+              thumbnailPublic={`https://res.cloudinary.com/cinespace/${
+                video?.thumbnailPublic === video?.videoPublic
+                  ? "video"
+                  : "image"
+              }/upload/v1693681213/${video?.thumbnailPublic}.jpg`}
               channelName={video.uploadedBy}
               channelLink={`https://res.cloudinary.com/cinespace/video/upload/v1693681213/${video.videoPublic}`}
-              channelImg={"https://media.licdn.com/dms/image/D4E03AQGI1ZJx1AywYQ/profile-displayphoto-shrink_800_800/0/1665646742212?e=1699488000&v=beta&t=Td2ujhuMGBT5UARVIpY3gbyKxmOeLF6qL7Qw7bCxhM8"}
+              channelImg={
+                "https://media.licdn.com/dms/image/D4E03AQGI1ZJx1AywYQ/profile-displayphoto-shrink_800_800/0/1665646742212?e=1699488000&v=beta&t=Td2ujhuMGBT5UARVIpY3gbyKxmOeLF6qL7Qw7bCxhM8"
+              }
               videoViews={"1B"}
               videoTitle={video.title}
               videoTime={"1 day"}
               videoPublic={video.videoPublic}
               key={video._id}
-              id={video._id} 
-              videoDesc={video.desc}           
-              />
+              id={video._id}
+              videoDesc={video.desc}
+            />
           );
         })}
       </main>
