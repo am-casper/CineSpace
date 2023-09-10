@@ -215,4 +215,71 @@ const getVideo = async ({
   }
 };
 
-export { addVideo, getVideo, getVideos, updateVideo };
+const searchVideo = async ({
+  params,
+  response,
+}: {
+  params: { id: string };
+  response: any;
+}) => {
+  console.log(params.id);
+  
+  const URI = `${BASE_URI}/aggregate`;
+  const query = {
+    collection: COLLECTION,
+    database: DATABASE,
+    dataSource: DATA_SOURCE,
+    pipeline:[{
+      $search:{
+        index: "default",
+        text: {
+          query: params.id,
+          path: {
+            wildcard:"*"
+          },
+          fuzzy:{}
+        }
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        thumbnailPublic: 1,
+        dislikeCount: 1,
+        viewsCount: 1,
+        isKids: 1,
+        uploadedBy: 1,
+        title: 1,
+        desc: 1,
+        videoPublic: 1,
+        comments: 1,
+
+      },
+    }
+  ]
+    
+  };
+  options.body = JSON.stringify(query);
+  
+  const dataResponse = await fetch(URI, options);
+  const video = await dataResponse.json();
+  console.log(video);
+  
+  response.headers.set("Access-Control-Allow-Origin", "*");
+
+  if (dataResponse.ok) {
+    response.status = 200;
+    response.body = {
+      success: true,
+      data: video,
+    };
+  } else {
+    response.status = 404;
+    response.body = {
+      success: false,
+      msg: "No video found",
+    };
+  }
+};
+
+export { addVideo, getVideo, getVideos, updateVideo ,searchVideo};
