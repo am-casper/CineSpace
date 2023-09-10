@@ -1,4 +1,15 @@
-node_modules
-/package-lock.json
+/frontend/node_modules
+/frontend/.next
+/frontend/package-lock.json
+/frontend/.DS_Store
+/frontend/src/.DS_Store
 /.next
 /.env
+/server/.env
+/frontend/.env
+.vscode
+node_modules
+package-lock.json
+.next
+.env
+.DS_Store
