@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 function Navbar() {
   const router = useRouter();
-  const sidebar = useSidebarStore((state) => state.sidebarActive);
+  const sidebar = useSidebarStore((state:any) => state.sidebarActive);
   const [search, setSearch] = useState("");
   const searchkaro = () => {
     if (search) {
