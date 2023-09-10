@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 function Navbar() {
   const router = useRouter();
-  const sidebar = useSidebarStore((state:any) => state.sidebarActive);
+  const sidebar = useSidebarStore((state: any) => state.sidebarActive);
   const [search, setSearch] = useState("");
   const searchkaro = () => {
     if (search) {
@@ -24,10 +24,13 @@ function Navbar() {
       <h1 className="logo">Cinespace</h1>
       <div className="w-4/12 flex flex-row justify-between items-center">
         <input
-          className="self-cente w-full h-15 my-0"
+          className="self-cente w-full h-15 my-0 searchinput"
           placeholder="Search"
           onChange={(e) => {
             setSearch(e.target.value);
+          }}
+          onKeyDownCapture={(e) => {
+            e.key === "Enter" && searchkaro();
           }}
         />
         <div className="search" onClick={searchkaro}>
