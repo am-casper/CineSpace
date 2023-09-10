@@ -1,4 +1,4 @@
-.infoo{
+.infoo {
   padding: 0px 30px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -35,6 +35,7 @@
 }
 
 .subbtn {
+  width: 130px;
   margin: 2px 20px;
   justify-content: center;
   align-items: center;
@@ -57,12 +58,12 @@
   justify-content: space-evenly;
 }
 
-.thumb{
+.thumb {
   margin-left: 110px;
   margin-right: 45px;
 }
 
-.btn{
+.btn {
   margin-right: 45px;
   margin-top: 2rem;
   width: fit-content;
@@ -97,6 +98,7 @@
 }
 
 .description {
+  font-size: 1rem;
   padding: 15px 30px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -135,4 +137,81 @@
 .more {
   margin-top: 10px;
   pointer-events: non;
+}
+
+.comments {
+  padding: 0px 30px;
+  padding-left: 110px;
+  padding-bottom: 60px;
+}
+
+.comments h1 {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: black;
+}
+
+.commentinput {
+  font-size: 1rem;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.commentinput:focus {
+  border: none;
+  border-bottom: 1px solid black;
+  transition: border-bottom 0.5s 0.25s;
+  outline: none;
+}
+
+.comment {
+  padding: 15px 0px;
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comment .dislike {
+  height: 40px;
+  width: 120px;
+}
+
+.commentoptions {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: auto;
+}
+
+.cancelbtn {
+  font-weight: 600;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+.cancelbtn:hover {
+  background-color: #e5e5e5;
+  cursor: pointer;
+  border-radius: 25px;
+}
+.commentbtndisabled {
+  background-color: #f2f2f2;
+  border-radius: 25px;
+  font-weight: 500;
+  color: #909090;
+  padding: 10px 20px;
+}
+
+.commentbtnactive {
+  background-color: #0360d3;
+  border-radius: 25px;
+  font-weight: 500;
+  color: white;
+  padding: 10px 20px;
+}
+
+.commentbtnactive:hover {
+  cursor: pointer;
 }
