@@ -34,7 +34,7 @@
 .thumbnail {
   width: max-content;
   height: max-content;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .channel {
   font-size: 1.1rem;

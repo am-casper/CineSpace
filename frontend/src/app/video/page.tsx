@@ -173,62 +173,6 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
         <p> {video?.viewsCount} Views | 16 hours ago</p>
         <div className={`${desc ? "less" : "more"}`}>
           {video?.desc}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-          repellendus temporibus animi, maiores quae iste? Et laborum odio
-          reprehenderit maiores hic. Maxime perspiciatis deserunt quidem vitae
-          consequatur possimus beatae dicta explicabo adipisci rem reiciendis
-          ipsa tenetur repellendus repellat vel, praesentium sed blanditiis
-          sapiente totam, ut eaque excepturi. Ratione architecto aut dignissimos
-          officia quos iure, tempora et id eveniet dolores aliquam unde
-          blanditiis vitae repellendus hic provident. Doloremque consequuntur
-          voluptatibus, est commodi facere maxime quas sit porro aut accusantium
-          nihil tempora similique excepturi vel necessitatibus delectus iste
-          ullam. Quaerat blanditiis error, impedit natus labore atque. Eos eaque
-          ipsa quod officia quo blanditiis aliquam dolorum autem magni nesciunt,
-          labore aspernatur voluptate recusandae deserunt similique sequi ipsam
-          animi? Fuga ipsum voluptates vero aliquam sequi dolores ab consequatur
-          cupiditate unde non vitae amet dolore quae, harum magni atque
-          consequuntur, quam facere nesciunt! Ut ipsum eaque laboriosam corporis
-          impedit aspernatur voluptatum quaerat natus, officiis qui temporibus
-          numquam quos quo repellat commodi, magnam facere quasi repudiandae
-          cupiditate, enim suscipit ipsa! Tenetur consequatur explicabo debitis
-          esse. Aspernatur, iusto. Vel eos consequuntur doloribus saepe repellat
-          eligendi nobis, nostrum, facere ex aut numquam velit assumenda qui
-          quod nihil. Ad quis, beatae explicabo repudiandae voluptate odio ipsum
-          aspernatur minima et obcaecati minus eius delectus consequuntur. Quae,
-          maxime nesciunt amet nisi quo veniam fugit facere aliquam deserunt
-          magni nihil eaque, natus suscipit consequatur harum numquam mollitia?
-          Totam magni deserunt quibusdam quos nesciunt at quod illo blanditiis
-          animi, dolores, error aliquam quidem quia ex unde. Blanditiis officia
-          quam obcaecati ullam quisquam veniam porro a enim ad sunt, mollitia
-          fugiat distinctio qui vero, ducimus omnis, tempore pariatur beatae
-          minus totam? Praesentium, eveniet! Molestias expedita incidunt atque
-          ea assumenda enim quo aliquid, error porro, dolores pariatur numquam?
-          Aliquam obcaecati commodi accusamus culpa dolorem, possimus eveniet
-          quas suscipit delectus ducimus et. Optio obcaecati, quam assumenda
-          deleniti eos nobis a. Porro libero fugit reiciendis sequi impedit
-          assumenda sit perferendis dolorem odio quasi vel commodi nulla magni,
-          asperiores iure ad ipsum, tenetur explicabo animi. Illum nulla ipsam
-          numquam officiis asperiores! Labore est sed, expedita porro blanditiis
-          maxime fugit dolor repellat natus praesentium id! Libero reiciendis
-          autem veniam ut numquam vero doloribus unde voluptas incidunt illum,
-          nostrum asperiores, totam placeat, harum saepe. Laudantium inventore
-          nam veniam reprehenderit enim, architecto aperiam quibusdam
-          consectetur modi nisi nobis laborum ut deserunt velit eveniet est
-          nesciunt temporibus repellendus vel aspernatur. Minima nulla ducimus
-          nam debitis ad ipsa dolorum, sint optio sequi recusandae velit
-          sapiente rem consequuntur. Nemo qui culpa maxime porro ad, fugit
-          voluptas accusantium voluptates optio cupiditate architecto, quod
-          delectus quaerat dolores, exercitationem quidem! Alias rem
-          voluptatibus, velit reprehenderit aspernatur molestias ullam sequi
-          exercitationem aperiam non illum perferendis provident minima autem
-          tenetur cumque vel! Nesciunt architecto, laborum sequi minus corporis
-          ullam sit illum quis aperiam illo vero quos dolorum dolorem numquam
-          soluta consectetur dicta dolore exercitationem obcaecati suscipit
-          ipsum, ad vitae? Hic, dolor inventore, dignissimos alias voluptatem
-          ducimus quas, officia nobis doloremque dolorem harum distinctio ipsam
-          quae vero porro non possimus minima. Possimus nostrum minus ullam
-          optio! Eligendi praesentium officia possimus!
         </div>
         <h1></h1>
       </div>

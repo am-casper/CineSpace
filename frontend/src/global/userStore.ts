@@ -14,7 +14,7 @@ const useUserStore = create<UserState>((set) => ({
     set({ profile: link });
   },
   setUserName: (name: string) => {
-    set({ profile: name });
+    set({ name: name });
   },
 }));
 
