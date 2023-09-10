@@ -95,6 +95,11 @@
   padding: 10px;
   background-color: #f2f2f2;
   border-radius: 20px;
+
+}
+
+.share:hover{
+  cursor: pointer;
 }
 
 .description {
