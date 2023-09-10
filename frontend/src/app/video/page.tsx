@@ -12,10 +12,13 @@ import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import "@/styles/video.css";
 import { Avatar } from "@mui/material";
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import NotificationsOffIcon from '@mui/icons-material/NotificationsOff';
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import ReplyIcon from "@mui/icons-material/Reply";
 import useSidebarStore from "@/global/sideBarStore";
+import { useMediaQuery } from "react-responsive";
 
 export default function VideoScreen({ searchParams }: { searchParams: any }) {
   const sbactive = useSidebarStore((state) => state.sidebarActive);
@@ -26,15 +29,19 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
   console.log(id);
   const playerRef = useRef<ReactPlayer | null>(null);
   const [bitRate, setBitRate] = useState("400k");
-  const link = `https://res.cloudinary.com/cinespace/video/upload/br_${bitRate}/v1693681213/${id}.mp4`;
+  const link = `https://res.cloudinary.com/cinespace/video/upload/br_${bitRate}/v1693681213/${id}`;
   const [showVid, setShowVid] = useState(false);
   const [seekTo, setSeekTo] = useState<number>(0);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
   // Added by me
   const [video, setVideo] = useState<Video>();
   useEffect(() => {
     axios.get(`http://localhost:8000/video/${id}`).then((res) => {
       setVideo(res.data.data.document);
+      console.log(video);
+      
     });
   }, []);
 
@@ -59,6 +66,7 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
   return (
     <>
       {" "}
+      <div className="thumb">
       {showVid ? (
         <ReactPlayer
           muted={true}
@@ -72,12 +80,15 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
         />
       ) : (
         <img
-          src="https://res.cloudinary.com/cinespace/image/upload/v1693728639/uybtxljvfcw0djnnmbvu.png"
+        style={{
+          width:"100%"
+        }}
+          src={`https://res.cloudinary.com/cinespace/image/upload/v1693728639/${video?.thumbnailPublic}.png`}
           onClick={() => {
             setShowVid(true);
           }}
         ></img>
-      )}
+      )}</div>
       <br />
       <div className="grid grid-cols-3">
         <div className="flex">
@@ -85,8 +96,7 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             onClick={seekforward}
             style={{
               width: "fit-content",
-              display: "flex",
-              padding: "0.5rem 1rem",
+              marginLeft: "110px"
             }}
             className="flex items-center"
           >
@@ -96,9 +106,8 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
           <button
             onClick={seekbackward}
             style={{
-              width: "fit-content",
               display: "flex",
-              padding: "0.5rem 1rem",
+              // padding: "0.5rem 1rem",
             }}
             className="flex items-center"
           >
@@ -138,13 +147,16 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             <p>{"884K subscribers"}</p>
           </div>
           <div
-            className={`subbtn ${subscribed ? "bg-slate-500" : ""}}`}
+            className={`subbtn px-2 ${subscribed ? "bg-slate-500" : ""}}`}
             onClick={() => {
               setSubscribed(!subscribed);
               //TODO: add subscribe backend call
             }}
           >
-            {subscribed ? "unsubscribe" : "subscribe"}
+            {
+              isMobile? (subscribed?<NotificationsActiveIcon /> : <NotificationsOffIcon /> ) : (subscribed ? <div><NotificationsOffIcon />Unbscribe</div>: <div><NotificationsActiveIcon />Subsribe</div>)
+            }
+            
           </div>
         </div>
         <div className="buttons">
@@ -160,7 +172,8 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
           </div>
           <div className="share">
             <ReplyIcon />
-            Share
+            {/* {"Share"} */}
+            {!isMobile&&"Share"}
           </div>
         </div>
       </div>

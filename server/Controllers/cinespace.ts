@@ -42,7 +42,7 @@ const updateVideo = async ({
 
     const set: Video = {};
     if (thumbnailPublic) set.thumbnailPublic = thumbnailPublic;
-    else if (videoPublic) set.videoPublic = videoPublic;
+    if (videoPublic) set.videoPublic = videoPublic;
     else if (dislikeCount) set.dislikeCount = dislikeCount;
     else if (viewsCount) set.viewsCount = viewsCount;
     else if (isKids) set.isKids = isKids;
@@ -54,9 +54,7 @@ const updateVideo = async ({
       database: DATABASE,
       dataSource: DATA_SOURCE,
       filter: {
-        _id: {
-          $oid: params.id,
-        },
+        videoPublic: params.id,
       },
       update: { $set: set },
     };
@@ -157,6 +155,7 @@ const getVideos = async ({ response }: { response: any }) => {
     const dataResponse = await fetch(URI, options);
     const allVideos = await dataResponse.json();
     response.headers.set("Access-Control-Allow-Origin", "*");
+    console.log(allVideos);
 
     if (dataResponse.ok) {
       response.status = 200;
@@ -193,9 +192,7 @@ const getVideo = async ({
     database: DATABASE,
     dataSource: DATA_SOURCE,
     filter: {
-      _id: {
-        $oid: params.id,
-      },
+      videoPublic: params.id,
     },
   };
   options.body = JSON.stringify(query);
@@ -218,4 +215,4 @@ const getVideo = async ({
   }
 };
 
-export { addVideo, getVideos, getVideo, updateVideo };
+export { addVideo, getVideo, getVideos, updateVideo };

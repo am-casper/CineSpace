@@ -7,14 +7,14 @@ export interface UserState {
   setUserName: (name: string) => void;
 }
 
-const useUserStore = create<UserState>((set) => ({
+const useUserStore = create<UserState>((set: (arg0: { profile?: string; name?: string; }) => void) => ({
   profile: "",
   name: "",
   setUserProfile: (link: string) => {
     set({ profile: link });
   },
   setUserName: (name: string) => {
-    set({ profile: name });
+    set({ name: name });
   },
 }));
 

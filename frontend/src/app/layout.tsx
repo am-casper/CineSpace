@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body style={{
+        fontSize:"2vw"
+      }} className={inter.className}>
         <Sidebar />
         {children}</body>
     </html>

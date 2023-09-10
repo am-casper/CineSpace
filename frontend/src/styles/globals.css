@@ -22,9 +22,9 @@ html {
   margin: 0;
   height: max-content;
 }
-button {
+button{
   margin-top: 2rem;
-  width: 10rem;
+  width: fit-content;
   border: 1px solid black;
   border-radius: 25px;
   padding: 0.5rem;

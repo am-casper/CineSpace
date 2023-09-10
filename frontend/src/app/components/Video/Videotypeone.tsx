@@ -6,26 +6,26 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   id: string;
-  thumbnailUrl: string;
+  thumbnailPublic: string;
+  videoPublic:string;
   channelName: string;
   channelLink: string;
   channelImg: string;
   videoViews: string;
   videoTitle: string;
   videoTime: string;
-  videoLink: string;
 }
 
 function Videotypeone({
   id,
-  thumbnailUrl,
+  thumbnailPublic,
+  videoPublic,
   channelName,
   channelLink,
   channelImg,
   videoViews,
   videoTitle,
   videoTime,
-  videoLink,
 }: Props) {
   const router = useRouter();
 
@@ -33,13 +33,13 @@ function Videotypeone({
     <div className="main">
       <Image
         className="thumbnail"
-        src={thumbnailUrl}
+        src={thumbnailPublic}
         alt=""
         objectFit="contain"
         height={225}
         width={400}
         onClick={() => {
-          router.push(`/video?id=${id}`);
+          router.push(`/video?id=${videoPublic}`);
         }}
       />
 

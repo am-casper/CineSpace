@@ -25,8 +25,8 @@ export default function LoginPage() {
       const response = await axios.post("/api/users/login", user);
       // console.log(response);
       // console.log(user);
-      setUsernotfound((usernotfound) => false);
-      setErrori((errori) => response.data.message);
+      setUsernotfound((usernotfound: any) => false);
+      setErrori((errori: any) => response.data.message);
       router.push("/");
     } catch (error: any) {
       // console.log("Kuch kadbadi ho gyi hai bro", error.message);
@@ -38,8 +38,8 @@ export default function LoginPage() {
       else if (error.message.includes("404")) {
         msg = "User not found"
       }
-      setUsernotfound((usernotfound) => true);
-      setErrori((errori) => msg);
+      setUsernotfound((usernotfound: any) => true);
+      setErrori((errori: any) => msg);
 
       toast.error(error.message);
     } finally {
@@ -63,13 +63,13 @@ export default function LoginPage() {
       <input
         type="email"
         value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
+        onChange={(e: { target: { value: any; }; }) => setUser({ ...user, email: e.target.value })}
       />
       <label htmlFor="password">password</label>
       <input
         type="password"
         value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
+        onChange={(e: { target: { value: any; }; }) => setUser({ ...user, password: e.target.value })}
       />
       <p>{errori}</p>
       <button onClick={onLogin}>Login</button>
