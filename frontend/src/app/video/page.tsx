@@ -63,6 +63,7 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
       });
   };
   // end
+  console.log(video);
   function seekforward(event: any): void {
     playerRef.current?.seekTo(playerRef.current?.getCurrentTime()! + 5);
   }
@@ -80,27 +81,27 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
     <>
       {" "}
       <div className="thumb">
-        {showVid ? (
-          <ReactPlayer
-            muted={true}
-            ref={playerRef}
-            url={link}
-            controls
-            width="100%"
-            height="fit-content"
-            onStart={onStart}
-            playing={showVid}
-          />
-        ) : (
-          <img
-            style={{
+      {showVid ? (
+        <ReactPlayer
+          muted={true}
+          ref={playerRef}
+          url={link}
+          controls
+          width="100%"
+          height="fit-content"
+          onStart={onStart}
+          playing={showVid}
+        />
+      ) : (
+        <img
+        style={{
               width: "100%",
-            }}
-            src={`https://res.cloudinary.com/cinespace/image/upload/v1693728639/${video?.thumbnailPublic}.png`}
-            onClick={() => {
-              setShowVid(true);
-            }}
-          ></img>
+        }}
+          src={`https://res.cloudinary.com/cinespace/image/upload/v1693728639/${video?.thumbnailPublic}.png`}
+          onClick={() => {
+            setShowVid(true);
+          }}
+        ></img>
         )}
       </div>
       <br />
@@ -211,7 +212,7 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
       >
         <p> {video?.viewsCount} Views | 16 hours ago</p>
         <div className={`${desc ? "less" : "more"}`}>{video?.desc}</div>
-      </div>
+        </div>
       <div className="comments">
         <h1>{video?.comments.length} Comments</h1>
         <input
