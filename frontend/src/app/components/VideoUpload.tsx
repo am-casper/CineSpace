@@ -43,7 +43,6 @@ const VideoUpload = () => {
       },
       function (error: any, result: any) {
         if (!error && result.event === "success") {
-          console.log(result);
           setVidPublicId(result.info.public_id);
         }
       }

@@ -14,7 +14,6 @@ export async function POST(request: NextRequest) {
     console.log(reqDataBody);
     // checking if user already exists
     const findResult = await User.findOne({ email });
-    console.log(!findResult);
     if (!findResult) {
       return NextResponse.json(
         {
@@ -28,7 +27,6 @@ export async function POST(request: NextRequest) {
         password,
         findResult.password
       );
-      console.log(passwordMatch);
       if (!passwordMatch) {
         return NextResponse.json({
           error: "Password is incorrect",

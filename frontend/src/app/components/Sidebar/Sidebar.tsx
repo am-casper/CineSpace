@@ -10,7 +10,6 @@ function Sidebar() {
 
   const setSidebar = useSidebarStore((state) => state.setSidebarActive);
   const sidebar = useSidebarStore((state) => state.sidebarActive);
-  console.log(sidebar);
   return (
     <div className={`z-30 ${sidebar ? "sidebaropen" : "sidebarclose"}`}>
       <div
