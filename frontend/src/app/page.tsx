@@ -9,6 +9,7 @@ import "@/styles/main.css";
 import { Video } from "@/utils/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import getAvatar from "@/utils/getAvatar";
 
 
 
@@ -21,6 +22,7 @@ export default function Home() {
     axios.get("http://localhost:8000/videos").then((res) => {
       setData(res.data.data.documents);
     });
+    
   }, []);
 
   return (

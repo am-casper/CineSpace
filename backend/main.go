@@ -21,14 +21,14 @@ type User struct {
 	Username      string   `json:"username"`
 	Name          string   `json:"name"`
 	Subscriptions []string `json:"subs"`
-	SubsAdd string `json:"subsAdd"`
+	SubsAdd       string   `json:"subsAdd"`
 	History       []string `json:"history"`
-	HistoryAdd string `json:"hisAdd"`
+	HistoryAdd    string   `json:"hisAdd"`
 	VideoUploaded []string `json:"vidUpload"`
-	VidUplAdd string `json:"vidUplAdd"`
+	VidUplAdd     string   `json:"vidUplAdd"`
 	Avatar        string   `json:"avatar"`
 	TotalViews    int      `json:"totalviews"`
-	IncreaseViews bool `json:"incViews"`
+	IncreaseViews bool     `json:"incViews"`
 }
 
 var Users []User
@@ -36,11 +36,15 @@ var Users []User
 var usersCollection *mongo.Collection
 
 func homePage(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	fmt.Fprintf(w, "Welcome to the HomePage!")
 	fmt.Println("Endpoint Hit: homePage")
 }
 
 func getUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	// code for fetch all users
 	fmt.Println("Endpoint Hit: getUsers")
 	cursor, err := usersCollection.Find(context.TODO(), bson.D{})
@@ -59,6 +63,8 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	vars := (r.URL.Query())
 	key := vars["username"][0]
 	fmt.Println("Endpoint Hit: updateUsers")
@@ -74,86 +80,88 @@ func updateUsers(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "No such User exist. Create a User")
 	} else {
 		reqBody, _ := io.ReadAll(r.Body)
-		var newUser,result User
+		var newUser, result User
 		var present bool
 		json.Unmarshal(reqBody, &newUser)
-		by,_:=json.Marshal(results[0])
-		json.Unmarshal(by,&result)
-		fmt.Println("resul",result.History)
+		by, _ := json.Marshal(results[0])
+		json.Unmarshal(by, &result)
+		fmt.Println("resul", result.History)
 		fmt.Println(results[0])
 		fmt.Println(newUser)
 		fmt.Println(bson.A{newUser}[0])
-		if newUser.Avatar=="" {
-			newUser.Avatar= result.Avatar
+		if newUser.Avatar == "" {
+			newUser.Avatar = result.Avatar
 		}
-		if newUser.Name=="" {
-			newUser.Name= result.Name
+		if newUser.Name == "" {
+			newUser.Name = result.Name
 		}
-		if newUser.HistoryAdd=="" {
+		if newUser.HistoryAdd == "" {
 			newUser.History = result.History
 		} else {
 			present = false
 			for _, res := range result.History {
 				fmt.Println(res)
-				if res==newUser.HistoryAdd {
-					present=true
+				if res == newUser.HistoryAdd {
+					present = true
 				}
 			}
 			if !present {
-				newUser.History = append(result.History, newUser.HistoryAdd )
+				newUser.History = append(result.History, newUser.HistoryAdd)
 			} else {
 				newUser.History = result.History
 			}
-			
+
 		}
-		if newUser.SubsAdd=="" {
+		if newUser.SubsAdd == "" {
 			newUser.Subscriptions = result.Subscriptions
 		} else {
 			present = false
 			for _, res := range result.Subscriptions {
 				fmt.Println(res)
-				if res==newUser.SubsAdd {
-					present=true
+				if res == newUser.SubsAdd {
+					present = true
 				}
 			}
-			if !present{
-				newUser.Subscriptions = append(result.Subscriptions, newUser.SubsAdd )
+			if !present {
+				newUser.Subscriptions = append(result.Subscriptions, newUser.SubsAdd)
 			} else {
 				newUser.Subscriptions = result.Subscriptions
 			}
 		}
-		if newUser.VidUplAdd=="" {
+		if newUser.VidUplAdd == "" {
 			newUser.VideoUploaded = result.VideoUploaded
 		} else {
 			present = false
 			for _, res := range result.VideoUploaded {
 				fmt.Println(res)
-				if res==newUser.VidUplAdd {
-					present=true
+				if res == newUser.VidUplAdd {
+					present = true
 				}
 			}
-			if !present{
-				newUser.VideoUploaded = append(result.VideoUploaded, newUser.VidUplAdd )
+			if !present {
+				newUser.VideoUploaded = append(result.VideoUploaded, newUser.VidUplAdd)
 			} else {
 				newUser.VideoUploaded = result.VideoUploaded
 			}
 		}
-		if newUser.IncreaseViews{
-			newUser.TotalViews = 1+result.TotalViews
+		if newUser.IncreaseViews {
+			newUser.TotalViews = 1 + result.TotalViews
 		} else {
 			newUser.TotalViews = result.TotalViews
 		}
 		fmt.Println(newUser.TotalViews)
-		_, err := usersCollection.UpdateOne(context.TODO(), bson.M{"username": key}, bson.D{{Key: "$set", Value: bson.D{{Key: "subs", Value: newUser.Subscriptions},{Key: "avatar",Value: newUser.Avatar},{Key: "history",Value: newUser.History},{Key: "vidUpload",Value: newUser.VideoUploaded},{Key: "name",Value: newUser.Name},{Key: "totalviews",Value: newUser.TotalViews}}}})
+		_, err := usersCollection.UpdateOne(context.TODO(), bson.M{"username": key}, bson.D{{Key: "$set", Value: bson.D{{Key: "subs", Value: newUser.Subscriptions}, {Key: "avatar", Value: newUser.Avatar}, {Key: "history", Value: newUser.History}, {Key: "vidUpload", Value: newUser.VideoUploaded}, {Key: "name", Value: newUser.Name}, {Key: "totalviews", Value: newUser.TotalViews}}}})
 		if err != nil {
 			panic(err)
 		}
-		getUsers(w,r)
+		getUsers(w, r)
 	}
 
 }
 
 func createUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	reqBody, _ := io.ReadAll(r.Body)
 	var newUser User
 	json.Unmarshal(reqBody, &newUser)
@@ -169,6 +177,7 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func getUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	vars := (r.URL.Query())
 	key := vars["username"][0]
 	fmt.Println("Endpoint Hit: getUser", key)
