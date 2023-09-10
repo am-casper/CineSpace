@@ -2,14 +2,40 @@
 import { useUploadContext } from "@/contexts/UploadContext";
 import VideoUpload from "@/app/components/VideoUpload";
 import ThumbnailUpload from "../components/ImageUpload";
+import { useState } from "react";
+import { Video } from "@/utils/types";
+import useUserStore from "@/global/userStore";
+import axios from "axios";
 
 export default function UploadPage() {
-  const { VidpublicId: VidpublicId, ImgpublicId: ImgpublicId } = useUploadContext();
-  const defaultLink = `https://res.cloudinary.com/cinespace/video/upload/v1693681213/${VidpublicId}.jpg`
-  const customLink = `https://res.cloudinary.com/cinespace/image/upload/v1693681213/${ImgpublicId}`
+  const username = useUserStore((state) => state.username);
+
+  const { VidpublicId: VidpublicId, ImgpublicId: ImgpublicId } =
+    useUploadContext();
+  const defaultLink = `https://res.cloudinary.com/cinespace/video/upload/v1693681213/${VidpublicId}.jpg`;
+  const customLink = `https://res.cloudinary.com/cinespace/image/upload/v1693681213/${ImgpublicId}`;
   function handleSubmit(event: any): void {
     //code for uploading to db
+    let video = {
+      desc: desc,
+      title: title,
+      thumbnailPublic: ImgpublicId ? ImgpublicId : VidpublicId,
+      videoPublic: VidpublicId,
+      isKids: false,
+      uploadedBy: "username",
+    };
+    axios.post("http://localhost:8000/video", video).then((res) => {
+      console.log(res);
+    });
   }
+
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+
+  console.log(defaultLink);
+  console.log(customLink);
+  console.log("title", title);
+  console.log(desc);
 
   return (
     <main className="flex min-h-screen flex-col p-5">
@@ -24,6 +50,9 @@ export default function UploadPage() {
                   type="text"
                   name="title"
                   className="w-[100%] upload-input col-span-5"
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
                 />
               </div>
               <div className="grid grid-cols-6 items-center">
@@ -31,14 +60,17 @@ export default function UploadPage() {
                 <textarea
                   name="desc"
                   className="w-[100%] upload-input col-span-5"
+                  onChange={(e) => {
+                    setDesc(e.target.value);
+                  }}
                 />
               </div>
             </form>
           </div>
           <VideoUpload />
         </div>
-        {VidpublicId&&!ImgpublicId&&<img src={defaultLink}></img>}
-        {ImgpublicId&&<img src={customLink}></img>}
+        {VidpublicId && !ImgpublicId && <img src={defaultLink}></img>}
+        {ImgpublicId && <img src={customLink}></img>}
         <ThumbnailUpload />
         <div className="flex justify-center items-center">
           <button type="submit" className=" upload-btn " onClick={handleSubmit}>
@@ -46,7 +78,6 @@ export default function UploadPage() {
           </button>
         </div>
       </div>
-     
     </main>
   );
 }
