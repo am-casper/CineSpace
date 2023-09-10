@@ -5,19 +5,19 @@ import useSidebarStore from "@/global/sideBarStore";
 import "@/styles/main.css";
 import { Video } from "@/utils/types";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Videotypeone from "../components/Video/Videotypeone";
-export default function History() {
+export default function Subsciptions() {
   const sbactive = useSidebarStore((state) => state.sidebarActive);
-  const [history, setHistory] = useState<String[]>([]);
-  const [hisVideo, setHisVideo] = useState<Video[]>([]);
+  const [videoUpl, setVidUpl] = useState<String[]>([]);
+  const [vidUplVideo, setVidUplVideo] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     axios
-      .get("http://localhost:10000/user?username=" + "casper")
+      .get("http://localhost:10000/user?username=" + "kituuu")
       .then((res) => {
-        console.log();
-        setHistory(res.data[0].history);
+        console.log(res.data[0].vidUpload);
+        setVidUpl(res.data[0].vidUpload);
       })
       .catch((e) => {
         console.log(e);
@@ -26,14 +26,14 @@ export default function History() {
 
   useEffect(() => {
     let vidArray: Video[] = [];
-    for (let his of history) {
+    for (let his of videoUpl) {
       console.log(his);
       axios
         .get("http://localhost:8000/video/" + his)
         .then((res) => {
           console.log("hi", res.data.data.document);
           vidArray.push(res.data?.data.document);
-          setHisVideo(vidArray);
+          setVidUplVideo(vidArray);
         })
         .catch((e) => {
           console.log(e);
@@ -42,18 +42,18 @@ export default function History() {
     }
     console.log("well",vidArray);
     
-  }, [history]);
+  }, [videoUpl]);
 useEffect(()=>{
-  console.log(hisVideo);
+  console.log(vidUplVideo);
   axios
-      .get("http://localhost:10000/user?username=" + "casper")
+      .get("http://localhost:10000/user?username=" + "kituuu")
       .then((res) => {
         console.log();
-        if(hisVideo.length==res.data[0].history.length) setLoading(false)
+        if(vidUplVideo.length==res.data[0].vidUpload.length) setLoading(false)
       })
   
   
-},[hisVideo])
+},[vidUplVideo])
   // var hi = hisVideo;
   // console.log(hi);
 
@@ -61,7 +61,7 @@ useEffect(()=>{
     <>
       <Navbar />
       <main className={`master ${sbactive ? "master-active" : ""}`}>
-        {hisVideo.map((video) => {
+        {vidUplVideo.map((video) => {
           return (
             <>
             {!loading?<Videotypeone
