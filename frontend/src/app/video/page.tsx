@@ -20,7 +20,7 @@ import ReplyIcon from "@mui/icons-material/Reply";
 import useSidebarStore from "@/global/sideBarStore";
 import { useMediaQuery } from "react-responsive";
 import React from "react";
-import { set } from "mongoose";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function VideoScreen({ searchParams }: { searchParams: any }) {
   const [usercmt, setusercmt] = useState("");
@@ -39,7 +39,7 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
   const [seekTo, setSeekTo] = useState<number>(0);
 
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
-
+  
   // Added by me
   const fetchVideo = async () => {
     axios.get(`http://localhost:8000/video/${id}`).then((res) => {
@@ -197,7 +197,9 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             {liked ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
             {video?.dislikeCount}
           </div>
-          <div className="share">
+          <div className="share" onClick={()=>{
+            toast("Copied to Clipboard!")
+            navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_DOMAIN}/video?id=${video?.videoPublic}&t=${playerRef.current?.getCurrentTime()!!=undefined?playerRef.current?.getCurrentTime()!:0}`)}}>
             <ReplyIcon />
             {/* {"Share"} */}
             {!isMobile && "Share"}
@@ -263,7 +265,7 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             </div>
           );
         })}
-      </div>
+      </div><Toaster />
     </>
   );
 }
