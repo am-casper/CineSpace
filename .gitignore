@@ -7,7 +7,9 @@
 /.env
 /server/.env
 /frontend/.env
-.vscodenode_modules
+.vscode
+node_modules
 package-lock.json
 .next
 .env
+.DS_Store
