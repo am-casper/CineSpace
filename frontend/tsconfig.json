@@ -26,6 +26,6 @@
       "@/public/*": ["./public/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/utils/CloudinaryService.js", "src/app/components/VideoUpload.tsx", "src/app/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/VideoUpload.tsx", "src/app/page.tsx", "src/utils/CloudinaryService.js"],
   "exclude": ["node_modules"]
 }
