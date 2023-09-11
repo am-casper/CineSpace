@@ -22,7 +22,8 @@ To run this project, you will need to add the following environment variables to
 `DATA_API_KEY` - mongodb data api key
 
 
-### for server (deno backend)
+### for server
+#### deno backend
 `BASE_URI` - `https://ap-south-1.aws.data.mongodb-api.com/app/$YOUR_APP_NAME/endpoint/data/v1/action`
 
 `DATA_SOURCE` - cluster name
@@ -31,7 +32,11 @@ To run this project, you will need to add the following environment variables to
 
 `COLLECTION` - collection name
 
+`DATA_API_KEY` - Mongo DATA API key
 
+#### GoLang Backend
+
+`MONGO_URL` - url of yout mongodb
 
 
 
@@ -71,6 +76,12 @@ Run the deno server
   deno run  -A server.ts
 ```
 
+Run the GOLang server
+
+```
+  cd backend
+  go run main.go
+```
 
 ## Features
 
@@ -78,10 +89,11 @@ Run the deno server
 - Upload your favorite videos
 - Custom Media Player
 - Automatic Thumbnail Generation Feature
-- Watch in two different qualities
+- Watch in many different qualities
 - Dislike the content you hate
-- Comment on you favorite videos
-- Dislike your favourite comments
-- Subscribe your favorite creators
+- Comment on you least favorite videos
+- Dislike your lest favourite comments
+- Subscribe your least favorite creators
 - Search content in cinespace
+- Watch History, your Subscriptions and your Uploaded Video
 
