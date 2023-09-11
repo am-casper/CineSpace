@@ -1,4 +1,5 @@
 .sidebarclose {
+  top: 0;
   position: fixed;
   z-index: 1;
   width: 85px;
