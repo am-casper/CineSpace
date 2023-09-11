@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import "@/components/Sidebar/sidebar.css";
-import { History, House, Menu, Subscriptions } from "@mui/icons-material";
+import { History, House, Menu, Subscriptions, Upload, VideoLibrary } from "@mui/icons-material";
 import useSidebarStore from "@/global/sideBarStore";
 import { useRouter } from "next/navigation";
 
@@ -41,12 +41,30 @@ function Sidebar() {
         </div>
         <div
           onClick={() => {
-            router.push("/subscription");
+            router.push("/subscriptions");
           }}
           className={`${sidebar ? "optionopen" : "optionclose"}`}
         >
           <Subscriptions fontSize="large" />
           <p className="tags">Subsciptions</p>
+        </div>
+        <div
+          onClick={() => {
+            router.push("/vidupload");
+          }}
+          className={`${sidebar ? "optionopen" : "optionclose"}`}
+        >
+          <VideoLibrary fontSize="large" />
+          <p className="tags">Your Video</p>
+        </div>
+        <div
+          onClick={() => {
+            router.push("/upload");
+          }}
+          className={`${sidebar ? "optionopen" : "optionclose"}`}
+        >
+          <Upload fontSize="large" />
+          <p className="tags">Upload</p>
         </div>
       </div>
     </div>

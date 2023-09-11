@@ -22,7 +22,7 @@ export default function UploadPage() {
       thumbnailPublic: ImgpublicId ? ImgpublicId : VidpublicId,
       videoPublic: VidpublicId,
       isKids: false,
-      uploadedBy: "username",
+      uploadedBy: "pandameetups",
     };
     axios.post("http://localhost:8000/video", video).then((res) => {
       console.log(res);

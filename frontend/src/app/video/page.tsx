@@ -5,6 +5,7 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
+  Navbar,
 } from "@nextui-org/react";
 import { SeekForwardIcon, SeekBackwardIcon } from "@vidstack/react/icons";
 import axios from "axios";
@@ -20,8 +21,7 @@ import ReplyIcon from "@mui/icons-material/Reply";
 import useSidebarStore from "@/global/sideBarStore";
 import { useMediaQuery } from "react-responsive";
 import React from "react";
-import { set } from "mongoose";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function VideoScreen({ searchParams }: { searchParams: any }) {
   const [usercmt, setusercmt] = useState("");
   const [focused, setFocused] = React.useState(false);
@@ -41,13 +41,14 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
   const isMobile = useMediaQuery({ query: "(max-width: 700px)" });
 
   // Added by me
-  const fetchVideo = async () => {
-    axios.get(`http://localhost:8000/video/${id}`).then((res) => {
-      setVideo(res.data.data.document);
-    });
-  };
+
   const [video, setVideo] = useState<Video>();
   useEffect(() => {
+    const fetchVideo = async () => {
+      axios.get(`http://localhost:8000/video/${id}`).then((res) => {
+        setVideo(res.data.data.document);
+      });
+    };
     fetchVideo();
   }, []);
   const postcomment = () => {
@@ -59,10 +60,16 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
         comments: newComments,
       })
       .then((res) => {
+        const fetchVideo = async () => {
+          axios.get(`http://localhost:8000/video/${id}`).then((res) => {
+            setVideo(res.data.data.document);
+          });
+        };
         fetchVideo();
       });
   };
   // end
+  console.log(video);
   function seekforward(event: any): void {
     playerRef.current?.seekTo(playerRef.current?.getCurrentTime()! + 5);
   }
@@ -78,29 +85,40 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
   }
   return (
     <>
-      {" "}
+      <Navbar />
       <div className="thumb">
         {showVid ? (
-          <ReactPlayer
-            muted={true}
-            ref={playerRef}
-            url={link}
-            controls
-            width="100%"
-            height="fit-content"
-            onStart={onStart}
-            playing={showVid}
-          />
+          <div className="player-wrapper">
+            <ReactPlayer
+              className="react-player"
+              muted={true}
+              ref={playerRef}
+              url={link}
+              controls
+              width="100%"
+              height="80vh"
+              onStart={onStart}
+              playing={showVid}
+            />
+          </div>
         ) : (
-          <img
-            style={{
-              width: "100%",
-            }}
-            src={`https://res.cloudinary.com/cinespace/image/upload/v1693728639/${video?.thumbnailPublic}.png`}
-            onClick={() => {
-              setShowVid(true);
-            }}
-          ></img>
+          <div className="player-wrapper">
+            <img
+              style={{
+                width: "100%",
+                height: "80vh",
+                objectFit: "contain",
+              }}
+              src={`https://res.cloudinary.com/cinespace/${
+                video?.thumbnailPublic === video?.videoPublic
+                  ? "video"
+                  : "image"
+              }/upload/v1693681213/${video?.thumbnailPublic}.jpg`}
+              onClick={() => {
+                setShowVid(true);
+              }}
+            ></img>
+          </div>
         )}
       </div>
       <br />
@@ -109,7 +127,11 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
           <button
             onClick={seekforward}
             style={{
-              width: "fit-content",
+              display: "flex",
+              fontSize: "1.3rem",
+              width: "150px",
+              alignItems: "center",
+              justifyContent: "center",
               marginLeft: "110px",
             }}
             className="flex items-center"
@@ -121,7 +143,11 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             onClick={seekbackward}
             style={{
               display: "flex",
-              // padding: "0.5rem 1rem",
+              fontSize: "1.3rem",
+              width: "150px",
+              alignItems: "center",
+              justifyContent: "center",
+              marginLeft: "30px",
             }}
             className="flex items-center"
           >
@@ -136,18 +162,31 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
               <button className="btn border-gray-200">Quality</button>
             </DropdownTrigger>
             <DropdownMenu
+              className="dropdown-menu"
               aria-label="Action event example"
               onAction={(key) => {
                 setSeekTo(playerRef.current?.getCurrentTime()!);
                 setBitRate(key.toString());
               }}
             >
-              <DropdownItem key="400k">144p</DropdownItem>
-              <DropdownItem key="700k">240p</DropdownItem>
-              <DropdownItem key="1m">360p</DropdownItem>
-              <DropdownItem key="4m">480p</DropdownItem>
-              <DropdownItem key="7m">720p</DropdownItem>
-              <DropdownItem key="10m">1080p</DropdownItem>
+              <DropdownItem className="dropdown-option" key="400k">
+                144p
+              </DropdownItem>
+              <DropdownItem className="dropdown-option" key="700k">
+                240p
+              </DropdownItem>
+              <DropdownItem className="dropdown-option" key="1m">
+                360p
+              </DropdownItem>
+              <DropdownItem className="dropdown-option" key="4m">
+                480p
+              </DropdownItem>
+              <DropdownItem className="dropdown-option" key="7m">
+                720p
+              </DropdownItem>
+              <DropdownItem className="dropdown-option" key="10m">
+                1080p
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
@@ -196,7 +235,21 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             {liked ? <ThumbDownAltIcon /> : <ThumbDownOffAltIcon />}
             {video?.dislikeCount}
           </div>
-          <div className="share">
+          <div
+            className="share"
+            onClick={() => {
+              toast("Copied to Clipboard!");
+              navigator.clipboard.writeText(
+                `${process.env.NEXT_PUBLIC_DOMAIN}/video?id=${
+                  video?.videoPublic
+                }&t=${
+                  playerRef.current?.getCurrentTime()! != undefined
+                    ? playerRef.current?.getCurrentTime()!
+                    : 0
+                }`
+              );
+            }}
+          >
             <ReplyIcon />
             {/* {"Share"} */}
             {!isMobile && "Share"}
@@ -246,9 +299,9 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
             </div>
           </div>
         )}
-        {video?.comments.map((comment) => {
+        {video?.comments.map((comment, i) => {
           return (
-            <div className="comment">
+            <div className="comment" key={i}>
               <h1>{comment.comment}</h1>
               <div
                 className="dislike"
@@ -263,6 +316,7 @@ export default function VideoScreen({ searchParams }: { searchParams: any }) {
           );
         })}
       </div>
+      <Toaster />
     </>
   );
 }

@@ -12,9 +12,20 @@ interface Video {
   comments: Comment[];
 }
 
+interface User {
+  _id:string;
+  username:string;
+  name:string;
+  subs:string[];
+  history:string[];
+  vidUpload:string[];
+  avatar:Link;
+  totalViews:number;
+}
+type Link = string ;
 interface Comment {
   comment: string;
   dislikeCount: number;
 }
 
-export type { Video, Comment };
+export type { Video, Comment, User};
