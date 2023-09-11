@@ -64,15 +64,35 @@
 }
 
 .btn {
+  font-size: 1rem;
+  width: 100px;
   margin-right: 45px;
   margin-top: 2rem;
-  width: fit-content;
+  /* width: fit-content; */
   border: 1px solid black;
   border-radius: 25px;
   padding: 0.5rem;
   color: blanchedalmond;
   background-color: black;
 }
+
+.dropdown-menu {
+  padding: 10px;
+}
+
+.dropdown-option{
+    font-size: 1.2rem;
+    padding: 5px;
+    outline: none;
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+}
+.dropdown-option:hover{
+    cursor: pointer;
+    color: burlywood;
+}
+
+
 
 .dislike {
   font-size: 1rem;
@@ -95,10 +115,9 @@
   padding: 10px;
   background-color: #f2f2f2;
   border-radius: 20px;
-
 }
 
-.share:hover{
+.share:hover {
   cursor: pointer;
 }
 
@@ -219,4 +238,17 @@
 
 .commentbtnactive:hover {
   cursor: pointer;
+}
+
+.player-wrapper {
+  margin-top: 100px ;
+  border: 1px solid black;
+  z-index: -20;
+}
+
+.thumbnail {
+  height: 80vh;
+  width: max-content;
+  position: relative;
+
 }

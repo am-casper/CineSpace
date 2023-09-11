@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 interface Props {
   id: string;
   thumbnailPublic: string;
-  videoPublic:string;
+  videoPublic: string;
   channelName: string;
   channelLink: string;
   channelImg: string;
@@ -32,10 +32,12 @@ function Videotypeone({
   return (
     <div className="main">
       <Image
+
         className="thumbnail"
         src={thumbnailPublic}
         alt=""
-        objectFit="contain"
+        // style={{ objectFit: "cover" }}
+        // fill={true}
         height={225}
         width={400}
         onClick={() => {
