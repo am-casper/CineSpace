@@ -55,7 +55,7 @@ function Sidebar() {
           className={`${sidebar ? "optionopen" : "optionclose"}`}
         >
           <VideoLibrary fontSize="large" />
-          <p className="tags">Video Uploaded by You</p>
+          <p className="tags">Your Video</p>
         </div>
         <div
           onClick={() => {

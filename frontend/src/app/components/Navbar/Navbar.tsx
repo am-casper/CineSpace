@@ -21,7 +21,7 @@ function Navbar() {
         sidebar ? "sidebaractiv" : ""
       }`}
     >
-      <h1 className="logo">Cinespace</h1>
+      <h1 className="logo" onClick={()=>router.push('/')}>Cinespace</h1>
       <div className="w-4/12 flex flex-row justify-between items-center">
         <input
           className="self-cente w-full h-15 my-0 searchinput"
