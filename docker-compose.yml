@@ -1,0 +1,39 @@
+version: '1'
+
+networks:
+  cinespace-net:
+    name: cinespace-net
+    driver: bridge
+    external: true
+
+services:
+  cinespace-go-cont:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: cinespace-go
+    ports:
+      - 10000:10000
+    networks:
+      - cinespace-net
+  cinespace-deno-cont:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: cinespace-deno
+    ports:
+      - 8000:8000
+    networks:
+      - cinespace-net
+  cinespace-nextjs-cont:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: cinespace-nextjs
+    volumes:
+      - ./frontend:/app/nextjs
+      - /app/nextjs/node_modules
+    ports:
+      - 3000:3000
+    networks:
+      - cinespace-net
